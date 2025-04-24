@@ -1,9 +1,7 @@
 object Diamond:
    def rows(c: Char): List[String] =
-      val upperHalf = (0 to c - 'A').map { i =>
-         val spaces = " " * (c - 'A' - i)
-         val char = ('A' + i).toChar
-         val middle = if i == 0 then "" else " " * (2 * i - 1)
-         spaces + char + middle + (if i == 0 then "" else char) + spaces
-      }
-      upperHalf.toList ++ upperHalf.dropRight(1).reverse
+      val diamond = for (x <- 'A' to c) yield
+         val spaces = " " * (c - x)
+         val middle = if x == 'A' then "" else " " * (2 * (x - 'A') - 1)
+         spaces + x + middle + (if x == 'A' then "" else x) + spaces
+      diamond.toList ++ diamond.reverse.tail
