@@ -1,10 +1,9 @@
 object Diamond:
    def rows(c: Char): List[String] =
       val iterations = c - 65
-      println(s"Iterations: $iterations")
-
-      val l = for it <- 0 to iterations
-      yield {" " * (iterations-it) + (it+65).toChar + " " * (iterations) + (it+65).toChar  + " " * (iterations-it)}
-      (l ++ l.reverse.drop(1)).foreach(println)
-
-      (l ++ l.reverse.drop(1)).toList
+      val ls =
+         for x <- 'A' to c
+         yield
+            val leftside = " " * (iterations - (x - 65)) + x + " " * (x - 65)
+            leftside ++ leftside.reverse.drop(1)
+      ls.toList ++ ls.reverse.drop(1)
